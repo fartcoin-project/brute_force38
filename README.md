@@ -1,13 +1,14 @@
 BIP38 Bruteforcer
 =================
 ## Installation
-
 ### Install dependencies
 
+```
 curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh -o install_nvm.sh
 bash install_nvm.sh
 sudo reboot
 nvm install 8
+```
 
 ### Clone repository
 
@@ -21,7 +22,8 @@ Fire up your console at the project location and execute:
 
     npm install
     npm link
-
+    npm audit fix (if errors)
+    
 ## Configuration
 
 1. Edit the [config.json](./config.json) and paste the `publicAddress` and `encryptedPrivateKey` values of your BIP38 encoded key.
