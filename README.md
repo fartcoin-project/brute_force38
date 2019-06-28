@@ -12,16 +12,20 @@ Download and install the latest version from:
 
 Clone the *BIP38* repository to a nice place on your machine via:
 
+```
 	git clone https://github.com/fartcoin-project/brute_force38.git
 		cd brute_force38
 		sudo chmod 777 *
 		sudo chmod 777 -R *
 		sudo chown $USER:$USER *
 		sudo chown $USER:$USER -R *
-	
+```
+
 ### Build
 
 Fire up your console at the project location and execute:
+
+```
 cd ~/brute_force38/
 	npm install -g n
 	npm link
@@ -30,22 +34,25 @@ cd ~/brute_force38/node_modules/bip38/
 		npm install --save bip38
 		npm i npm@latest -g
 		sudo nano index.js
-			Make a comment of deepEqual (on line 128)
-			// assert.deepEqual(salt, checksum)
-		save and exit nano (ctrl+x)		
+		
+```
+
+Make a comment of deepEqual (on line 128)
+	// assert.deepEqual(salt, checksum)
+save and exit nano (ctrl+x)		
 
 ## Start and test if the Brute_force38 works
-
+```
 cd ~/brute_force38/	
 	npm install
 	./start.js  or sudo node start.js
-	
+```	
 
-You should now see a list of passwords in the terminal,
-The application will now utilize all available CPUs to test each secret against your BIP38 encoded private key. 
-All invalid passwords are saved to [invalid_secrets.json](./invalid_secrets.json). 
-If the correct password has been found by brute_force38 the program will exit. 
-The correct password will be saved to [valid_secret.json](./valid_secret.json).
+* You should now see a list of passwords in the terminal.
+* Brute_force38 will now utilize all CPUs to test each password against your BIP38 private key. 
+* Invalid passwords are saved in [invalid_secrets.json](./invalid_secrets.json) and imported next try.
+* If the correct password has been found by brute_force38 the program will exit. 
+* The correct password will be saved in [valid_secret.json](./valid_secret.json).
 
 ## Configuration
 
