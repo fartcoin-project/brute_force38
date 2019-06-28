@@ -1,4 +1,4 @@
-BIP38 Bruteforcer
+BIP38_decrypter brute-force
 =================
 ## Installation
 
@@ -12,7 +12,7 @@ Download and install the latest version from:
 
 Clone the *BIP38* repository to a nice place on your machine via:
 
-    git clone https://github.com/fartcoin-project/bip38.git
+    git clone https://github.com/fartcoin-project/BIP38_decrypter.git
 	
 ### Build
 
