@@ -33,13 +33,12 @@ cd ~/brute_force38/
 cd ~/brute_force38/node_modules/bip38/
 		npm install --save bip38
 		npm i npm@latest -g
-		sudo nano index.js
+		sudo nano index.js  (edit index.js)
 		
-```
-
-Make a comment of deepEqual (on line 128)
+Make a comment of line 128
 	// assert.deepEqual(salt, checksum)
 save and exit nano (ctrl+x)		
+```
 
 ## Start and test if the Brute_force38 works
 ```
@@ -50,8 +49,8 @@ cd ~/brute_force38/
 
 * You should now see a list of passwords in the terminal.
 * Brute_force38 will now utilize all CPUs to test each password against your BIP38 private key. 
-* Invalid passwords are saved in [invalid_secrets.json](./invalid_secrets.json) and imported next try.
-* If the correct password has been found by brute_force38 the program will exit. 
+* Invalid passwords are saved in [invalid_secrets.json](./invalid_secrets.json) and will be imported next try.
+* If the correct password has been found by brute_force38 the program will terminate the search. 
 * The correct password will be saved in [valid_secret.json](./valid_secret.json).
 
 ## Configuration
