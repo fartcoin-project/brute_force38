@@ -15,7 +15,7 @@ process.on('message', function(message) {
                  .decrypt()
                  .getResult();
 
-    process.send('The secret "' + message.secret + '" is ' + (result.isValidSecret ? 'valid' : 'invalid') + '.');
+    process.send('The passwords "' + message.secret + '" is ' + (result.isValidSecret ? 'valid' : 'invalid') + '.');
 
     process.exit(result.isValidSecret ? 0 : 1);
 });

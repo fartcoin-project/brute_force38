@@ -1,15 +1,16 @@
 {
     "name": "brute_force_bip38",
     "description": "A helper to decode BIP38 encoded private keys.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "private": true,
     "dependencies": {
-        "bip38": "^2.0.1",
+        "8": "0.0.1",
+        "bip38": "^2.0.3",
         "coinkey": "2.0.0",
         "wif": "2.0.6"
     },
     "license": "MIT",
     "bin": {
-        "brutebip38": "./bin/brutebip38.js"
+        "brutebip38": "./start.js"
     }
 }

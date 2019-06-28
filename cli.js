@@ -22,7 +22,7 @@ process.on('exit', function () {
     console.log('Progress: ' + currentProgressInPercent() + '% (' + testedSecrets + '/' + secrets.length + ')');
 
     console.log('Total processing time: ' + process.uptime().toFixed(2) + ' seconds');
-    console.log('Processing time per secret: ' + (process.uptime() / testedSecrets).toFixed(2) + ' seconds');
+    console.log('Processing time per passwords: ' + (process.uptime() / testedSecrets).toFixed(2) + ' seconds');
 
     process.stdout.write('\x07');
     process.exit(0);
@@ -30,27 +30,27 @@ process.on('exit', function () {
 
 process.on('SIGINT', process.exit);
 
-console.log('Testing ' + secrets.length + ' secrets on ' + numberOfAvailableCPUs + ' CPU cores...');
+console.log('Brute-Force ' + secrets.length + ' passwords on ' + numberOfAvailableCPUs + ' CPU cores...');
 console.log('Public address: ' + config.publicAddress);
 console.log('BIP38 encrypted private key: ' + config.encryptedPrivateKey);
+console.log('Loading previous passwords from "' + invalidSecretsPath + '"...');
 
-console.log('Importing invalid secrets from "' + invalidSecretsPath + '"...');
 try {
     fs.statSync(invalidSecretsPath);
     invalidSecrets = JSON.parse(fs.readFileSync(invalidSecretsPath, 'utf8'));
-    console.log('Imported ' + invalidSecrets.length + ' invalid secrets that will be skipped.');
+    console.log('Imported ' + invalidSecrets.length + ' invalid passwords that will be skipped.');
 }
 catch (error) {
-    console.log('No invalid secrets have been found, moving on...');
+    console.log('No invalid passwords have been found, moving on...');
 }
 
-console.log('Filtering secrets...');
+console.log('Filtering passwords...');
 secrets = secrets.filter(function removeInvalidSecret (secret) {
 
     return invalidSecrets.indexOf(secret) === -1
 });
 
-console.log('Decrypting with ' + secrets.length + ' secrets...');
+console.log('Decrypting with ' + secrets.length + ' passwords...');
 
 if (secrets.length === 0) {
 
@@ -73,7 +73,7 @@ function spawnWorker () {
     if (index + 1 > secrets.length) {
         return;
     }
-
+	
     workerProcess = childProcess.fork(workerPath);
 
     workerProcess.secret = secrets[index];
@@ -83,7 +83,7 @@ function spawnWorker () {
         encryptedPrivateKey: config.encryptedPrivateKey,
         secret: secrets[index]
     });
-
+	
     index++;
 
     workerProcess.on('exit', function (exitCode) {
@@ -95,7 +95,7 @@ function spawnWorker () {
         if (exitCode === 0) {
 
             clearCurrentLine();
-            console.log('Saving valid secret to "' + validSecretPath + '"...');
+            console.log('Password Found saved to "' + validSecretPath + '"...');
 
             fs.writeFile(
                 validSecretPath,
@@ -107,7 +107,7 @@ function spawnWorker () {
                         console.log(error);
                     }
 
-                    console.log('A valid secret has been found, aborting...');
+                    console.log('Search is complete...');
                     process.exit(0);
                 }
             );
@@ -133,13 +133,13 @@ function logProgress () {
         estimatedDuration = testedSecrets === 0
                           ? 'calculating estimated duration...'
                           : 'finished in ~ ' + formatSeconds((process.uptime() / testedSecrets) * secretsToCheck);
-
+		
     clearCurrentLine();
-
+	console.log(secrets[index]);
     process.stdout.write(
         'Progress: ' + currentProgressInPercent() + '% ' +
-        '(' + testedSecrets + '/' + secrets.length + ')' +
-        ', ' + estimatedDuration
+        '(' + testedSecrets + '/' + secrets.length + ')' 
+		+ ', ' + estimatedDuration 
     );
 };
 
