@@ -15,8 +15,8 @@ Clone the *BIP38* repository to a nice place on your machine via:
 ```
 	git clone https://github.com/fartcoin-project/brute_force38.git
 		cd brute_force38
-		sudo chmod 777 *
-		sudo chmod 777 -R *
+		sudo chmod 775 *
+		sudo chmod 775 -R *
 		sudo chown $USER:$USER *
 		sudo chown $USER:$USER -R *
 ```
