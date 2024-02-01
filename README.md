@@ -26,18 +26,15 @@ Clone the *BIP38* repository to a nice place on your machine via:
 Fire up your console at the project location and execute:
 
 ```
-cd ~/brute_force38/
-	npm install -g n
-	npm link
-	npm install --save bip38
-cd ~/brute_force38/node_modules/bip38/
-		npm install --save bip38
-		npm i npm@latest -g
-		sudo nano index.js  (edit index.js)
-		
-Make a comment of line 128
+cd brute_force38
+	npm install npm@latest -g
+	npm install 
+
+Go to: 
+cd brute_force38/node_modules/bip38/index.js  (edit index.js)
+Make a comment of line 128 to suppress the errors
 	// assert.deepEqual(salt, checksum)
-save and exit nano (ctrl+x)		
+
 ```
 
 ## Start and test if the Brute_force38 works
